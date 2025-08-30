@@ -11,4 +11,6 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 @Mapper(componentModel = SPRING)
 public interface IProductMapper {
     ProductInfoDTO toDTO(final ProductEntity entity, final BigDecimal price);
+
+
 }
