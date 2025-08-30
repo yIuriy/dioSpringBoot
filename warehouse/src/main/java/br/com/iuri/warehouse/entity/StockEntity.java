@@ -42,6 +42,10 @@ public class StockEntity {
         }
     }
 
+    public boolean isUnavailable(){
+        return status == UNAVAILABLE;
+    }
+
     @Override
     public boolean equals(Object object) {
         if (object == null || getClass() != object.getClass()) return false;
