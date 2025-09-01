@@ -21,6 +21,6 @@ public interface IProductMapper {
 
     ProductStorefrontSaveDTO toDTO(final ProductEntity entity);
 
+    @Mapping(target = "price", expression = "java(entity.getPrice())")
     ProductDetailResponse toDetailResponse(final ProductEntity entity);
-
 }

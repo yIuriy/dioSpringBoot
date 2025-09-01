@@ -8,6 +8,7 @@ import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.mapstruct.Mapping;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -35,7 +36,7 @@ public class ProductEntity {
         return stock;
     }
 
-    private BigDecimal getPrice() {
+    public BigDecimal getPrice() {
         return getStockWithMinSoldPrice().getSoldPrice();
     }
 

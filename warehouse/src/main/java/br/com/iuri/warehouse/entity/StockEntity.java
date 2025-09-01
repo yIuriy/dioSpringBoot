@@ -23,7 +23,7 @@ public class StockEntity {
 
     private long amount;
 
-    private BigDecimal boughPrice;
+    private BigDecimal boughtPrice;
 
     private BigDecimal soldPrice;
 
@@ -51,12 +51,12 @@ public class StockEntity {
         if (object == null || getClass() != object.getClass()) return false;
         StockEntity that = (StockEntity) object;
         return amount == that.amount && Objects.equals(id, that.id) &&
-                Objects.equals(boughPrice, that.boughPrice) && Objects.equals(soldPrice, that.soldPrice) && status == that.status;
+                Objects.equals(boughtPrice, that.boughtPrice) && Objects.equals(soldPrice, that.soldPrice) && status == that.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, amount, boughPrice, soldPrice, status);
+        return Objects.hash(id, amount, boughtPrice, soldPrice, status);
     }
 
     @PrePersist

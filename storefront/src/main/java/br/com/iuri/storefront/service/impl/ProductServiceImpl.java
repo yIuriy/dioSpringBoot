@@ -7,6 +7,7 @@ import br.com.iuri.storefront.mapper.IProductMapper;
 import br.com.iuri.storefront.repository.ProductRepository;
 import br.com.iuri.storefront.service.IProductService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Log4j2
 public class ProductServiceImpl implements IProductService {
 
     private final ProductRepository repository;
@@ -23,12 +25,12 @@ public class ProductServiceImpl implements IProductService {
     private final IProductMapper mapper;
 
     @Override
-    public ProductEntity save(ProductEntity entity) {
+    public ProductEntity save(final ProductEntity entity) {
         return repository.save(entity);
     }
 
     @Override
-    public void changeActivated(UUID id, boolean active) {
+    public void changeActivated(final UUID id,final boolean active) {
         var entity = findById(id);
         entity.setActive(active);
         repository.save(entity);
@@ -40,7 +42,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public ProductInfoDTO findInfo(UUID id) {
+    public ProductInfoDTO findInfo(final UUID id) {
         var entity = findById(id);
         var price = requestCurrentAmount(id);
         return mapper.toDTO(entity, price);
@@ -65,8 +67,9 @@ public class ProductServiceImpl implements IProductService {
 
     private void purchaseWarehouse(final UUID id) {
         var path = String.format("/products/%s/purchase", id);
+        log.info(path);
         warehouseClient.post()
-                .uri("path")
+                .uri(path)
                 .retrieve()
                 .toBodilessEntity();
     }
