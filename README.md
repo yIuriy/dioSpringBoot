@@ -15,44 +15,49 @@
 ## Storefront - API destinada à ser vitrine do e-commerce
 ### Estrutura do Storefront
 ```
-src
-└── main
-    └── java
-        └── br
-            └── com
-                └── iuri
-                    └── storefront
-                        ├── config
-                        │    ├── AMPQConfig
-                        │    ├── OpenAPIConfig
-                        │    └── WarehouseClientConfig
-                        ├── controller
-                        │   ├── request
-                        │   │    └── ProductSaveRequest
-                        │   ├── response
-                        │   │    ├── ProductAvailableResponse
-                        │   │    ├── ProductDetailResponse
-                        │   │    └── ProductSavedResponse
-                        │   └── ProductController
-                        ├── dto
-                        │    ├── ProductDetailDTO
-                        │    ├── ProductInfoDTO
-                        │    └── StockStatusMessage
-                        ├── entity
-                        │    └── ProductEntity
-                        ├── exceptions
-                        │    └── ProductNotFoundException
-                        ├── mapper
-                        │    └── IProductMapper
-                        ├── repository
-                        │    └── ProductRepository
-                        ├── service
-                        │   ├── impl
-                        │   │    ├── IProductChangeAvailabilityConsumer
-                        │   │    └── IProductService
-                        │   ├── IProductChangeAvailabilityConsumer
-                        │   └── IProductService
-                        └── StorefrontApplication
+br.com.iuri.warehouse
+├── config
+│    ├── AMPQConfig
+│    ├── OpenAPIConfig
+│    └── WarehouseClientConfig
+│   
+├── controller
+│   ├── request
+│   │    └── ProductSaveRequest
+│   │
+│   ├── response
+│   │    ├── ProductAvailableResponse
+│   │    ├── ProductDetailResponse
+│   │    └── ProductSavedResponse
+│   │
+│   └── ProductController
+│   
+├── dto
+│    ├── ProductDetailDTO
+│    ├── ProductInfoDTO
+│    └── StockStatusMessage
+│   
+├── entity
+│    └── ProductEntity
+│   
+├── exceptions
+│    └── ProductNotFoundException
+│   
+├── mapper
+│    └── IProductMapper
+│   
+├── repository
+│    └── ProductRepositor
+│   
+├── service
+│   ├── impl
+│   │    ├── IProductChangeAvailabilityConsumer
+│   │    └── IProductService
+│   │
+│   ├── IProductChangeAvailabilityConsumer
+│   └── IProductService
+│   
+└── StorefrontApplication
 ```
 ### Endpoints do Storfront
 #### GET /products - retorna uma lista com todos os produtos cadastrados 
@@ -100,7 +105,62 @@ src
   ```
 ## Warehouse - API destinada à ser o estoque do e-commerce
 ### Estrutura do Warehouse
+```
+br.com.iuri.warehouse
+├── config
+│   ├── AMQPConfig
+│   ├── OpenAPIConfig
+│   └── StorefrontClientConfig
+│
+├── controller
+│   ├── request
+│   │   ├── ProductSaveRequest
+│   │   └── StockSaveRequest
+│   │
+│   ├── response
+│   │   ├── ProductDetailResponse
+│   │   ├── ProductSaveResponse
+│   │   └── StockSavedResponse
+│   │
+│   ├── ProductController
+│   └── StockController
+│
+├── dto
+│   ├── ProductStorefrontSaveDTO
+│   └── StockStatusMessage
+│
+├── entity
+│   ├── ProductEntity
+│   ├── StockEntity
+│   └── StockStatus
+│
+├── exceptions
+│   ├── ProductNotFoundException
+│   └── StockNotFoundException
+│
+├── mapper
+│   ├── IProductMapper
+│   └── IStockMapper
+│
+├── repository
+│   ├── ProductRepository
+│   └── StockRepository
+│
+├── service
+│   ├── impl
+│   │   ├── ProductChangeAvailabilityProducerImpl
+│   │   ├── ProductQueryServiceImpl
+│   │   ├── ProductServiceImpl
+│   │   └── StockServiceImpl
+│   │
+│   ├── IProductChangeAvailabilityProducer
+│   ├── IProductQueryService
+│   ├── IProductService
+│   └── IStockService
+│
+└── WarehouseApplication
 
+```
 ### Endpoints do Storfront
 #### PUT /stocks/{id}/release - altera o status de um produto para AVAILABLE no Warehouse para TRUE no Storefront 
 #### DELETE /stocks/{id}/release - altera o status de um produto para UNAVAILABLE no Warehouse para FALSE no Storefront  
