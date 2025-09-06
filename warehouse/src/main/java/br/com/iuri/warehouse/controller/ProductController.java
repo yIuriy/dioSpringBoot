@@ -7,10 +7,8 @@ import br.com.iuri.warehouse.mapper.IProductMapper;
 import br.com.iuri.warehouse.service.IProductQueryService;
 import br.com.iuri.warehouse.service.IProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.rmi.server.UID;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.CREATED;

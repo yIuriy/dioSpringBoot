@@ -1,6 +1,7 @@
 package br.com.iuri.warehouse.service.impl;
 
 import br.com.iuri.warehouse.entity.ProductEntity;
+import br.com.iuri.warehouse.exceptions.ProductNotFoundException;
 import br.com.iuri.warehouse.repository.ProductRepository;
 import br.com.iuri.warehouse.service.IProductQueryService;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ public class ProductQueryServiceImpl implements IProductQueryService {
 
     @Override
     public ProductEntity findById(UUID id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(() ->
+                new ProductNotFoundException(id));
     }
 }

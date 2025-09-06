@@ -42,7 +42,7 @@ public class StockEntity {
         }
     }
 
-    public boolean isUnavailable(){
+    public boolean isUnavailable() {
         return status == UNAVAILABLE;
     }
 

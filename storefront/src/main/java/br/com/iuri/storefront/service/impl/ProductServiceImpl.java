@@ -3,6 +3,7 @@ package br.com.iuri.storefront.service.impl;
 import br.com.iuri.storefront.dto.ProductDetailDTO;
 import br.com.iuri.storefront.dto.ProductInfoDTO;
 import br.com.iuri.storefront.entity.ProductEntity;
+import br.com.iuri.storefront.exceptions.ProductNotFoundException;
 import br.com.iuri.storefront.mapper.IProductMapper;
 import br.com.iuri.storefront.repository.ProductRepository;
 import br.com.iuri.storefront.service.IProductService;
@@ -30,7 +31,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void changeActivated(final UUID id,final boolean active) {
+    public void changeActivated(final UUID id, final boolean active) {
         var entity = findById(id);
         entity.setActive(active);
         repository.save(entity);
@@ -54,7 +55,9 @@ public class ProductServiceImpl implements IProductService {
     }
 
     private ProductEntity findById(final UUID id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id).orElseThrow(
+                () -> new ProductNotFoundException(id)
+        );
     }
 
     private BigDecimal requestCurrentAmount(final UUID id) {
@@ -67,7 +70,6 @@ public class ProductServiceImpl implements IProductService {
 
     private void purchaseWarehouse(final UUID id) {
         var path = String.format("/products/%s/purchase", id);
-        log.info(path);
         warehouseClient.post()
                 .uri(path)
                 .retrieve()

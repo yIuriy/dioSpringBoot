@@ -1,6 +1,7 @@
 package br.com.iuri.warehouse.entity;
 
 
+import br.com.iuri.warehouse.exceptions.StockNotFoundException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -8,7 +9,6 @@ import jakarta.persistence.PrePersist;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.mapstruct.Mapping;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -61,6 +61,6 @@ public class ProductEntity {
         return this.stocks.stream()
                 .filter(s -> s.getStatus().equals(AVAILABLE))
                 .min(Comparator.comparing(StockEntity::getSoldPrice))
-                .orElseThrow();
+                .orElseThrow(()-> new StockNotFoundException(getId()));
     }
 }

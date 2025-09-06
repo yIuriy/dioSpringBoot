@@ -4,7 +4,6 @@ import br.com.iuri.storefront.controller.request.ProductSaveRequest;
 import br.com.iuri.storefront.controller.response.ProductAvailableResponse;
 import br.com.iuri.storefront.controller.response.ProductDetailResponse;
 import br.com.iuri.storefront.controller.response.ProductSavedResponse;
-import br.com.iuri.storefront.dto.ProductDetailDTO;
 import br.com.iuri.storefront.dto.ProductInfoDTO;
 import br.com.iuri.storefront.entity.ProductEntity;
 import org.mapstruct.Mapper;

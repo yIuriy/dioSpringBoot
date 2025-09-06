@@ -24,7 +24,7 @@ public class ProductServiceImpl implements IProductService {
     private final IProductMapper mapper;
 
     @Override
-    public void purchase(UUID id) {
+    public void purchase( UUID id) {
         var entity = productQueryService.findById(id);
         var stock = entity.decStock();
         repository.save(entity);

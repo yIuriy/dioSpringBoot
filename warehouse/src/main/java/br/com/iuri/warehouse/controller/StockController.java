@@ -5,7 +5,6 @@ import br.com.iuri.warehouse.controller.response.StockSavedResponse;
 import br.com.iuri.warehouse.mapper.IStockMapper;
 import br.com.iuri.warehouse.service.IStockService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -40,6 +39,4 @@ public class StockController {
     void inactive(@PathVariable final UUID id) {
         service.inactive(id);
     }
-
-
 }

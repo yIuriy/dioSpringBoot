@@ -3,6 +3,8 @@ package br.com.iuri.warehouse.service.impl;
 import br.com.iuri.warehouse.dto.StockStatusMessage;
 import br.com.iuri.warehouse.entity.StockEntity;
 import br.com.iuri.warehouse.entity.StockStatus;
+import br.com.iuri.warehouse.exceptions.ProductNotFoundException;
+import br.com.iuri.warehouse.exceptions.StockNotFoundException;
 import br.com.iuri.warehouse.repository.StockRepository;
 import br.com.iuri.warehouse.service.IProductChangeAvailabilityProducer;
 import br.com.iuri.warehouse.service.IProductQueryService;
@@ -45,7 +47,9 @@ public class StockServiceImpl implements IStockService {
     public void changeStatus(UUID id, StockStatus status) {
         log.info(String.valueOf(id));
         log.info(String.valueOf(status));
-        var entity = repository.findById(id).orElseThrow();
+        var entity = repository.findById(id).orElseThrow(() ->
+                new StockNotFoundException(id)
+        );
         entity.setStatus(status);
         log.info(String.valueOf(entity.getStatus()));
         repository.save(entity);
